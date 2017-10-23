@@ -1,5 +1,12 @@
 package cz.expertkom.ju.L02_ukol;
 
+/*
+ * Aktuální poèasí a jeho pøedpovìï pomocí API portálu http://openweathermap.org/api
+ * 
+ * Aplikaèní logika je ve tøídì "Pocasi" 
+ * 
+ */
+
 public class Main {
 
 	public static void main(String[] args) {
