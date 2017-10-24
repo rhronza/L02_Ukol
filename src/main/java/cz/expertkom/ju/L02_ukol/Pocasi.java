@@ -28,8 +28,8 @@ public class Pocasi {
 	private static final String ZADOST_PREDPOVED_POCASI = "http://api.openweathermap.org/data/2.5/forecast?id="+mesto+"&units="+units+"&lang="+lang+"&APPID="+apiKey;
 
 	/* 
-	 * do těchto tříd se ukládají výsledky po dotazu klienta metodou get() na server 
-	 * (vyýledky jsou ve form�tu JSON) proměnné se inicializují v kontruktoru:
+	 * do těchto tříd se ukládají odpovědi na dotaz klienta metodou get() na server 
+	 * (výsledky jsou ve formátu JSON) proměnné se inicializují v kontruktoru:
 	 * 	 *  
 	 *  */
 	private HttpResponse<JsonNode> odpovedAktualniPocasi; 
