@@ -5,7 +5,7 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 
 /*
- *  po�as� pomoc� API port�lu http://openweathermap.org/api
+ *  počasí pomocí API portálu http://openweathermap.org/api a knihovny UNIREST
  * 
  */
 
@@ -28,8 +28,8 @@ public class Pocasi {
 	private static final String ZADOST_PREDPOVED_POCASI = "http://api.openweathermap.org/data/2.5/forecast?id="+mesto+"&units="+units+"&lang="+lang+"&APPID="+apiKey;
 
 	/* 
-	 * do t��d se ukládají výsledky po dotazu klienta metodou get() na server 
-	 * (ve form�tu JSON) proměnné se inicializují v kontruktoru:
+	 * do těchto tříd se ukládají výsledky po dotazu klienta metodou get() na server 
+	 * (vyýledky jsou ve form�tu JSON) proměnné se inicializují v kontruktoru:
 	 * 	 *  
 	 *  */
 	private HttpResponse<JsonNode> odpovedAktualniPocasi; 
