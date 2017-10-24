@@ -1,9 +1,9 @@
 package cz.expertkom.ju.L02_ukol;
 
 /*
- * Aktuální poèasí a jeho pøedpovìï pomocí API portálu http://openweathermap.org/api
+ * AktuÃ¡lnÃ­ poÄasÃ­ a jeho pÅ™edpovÄ›Ä pomocÃ­ API portÃ¡lu http://openweathermap.org/api
  * 
- * Aplikaèní logika je ve tøídì "Pocasi" 
+ * AplikaÄnÃ­ logika je ve tÅ™Ã­dÄ› "Pocasi" 
  * 
  */
 
@@ -16,7 +16,7 @@ public class Main {
 		String aktualniPocasi;
 		String predpovedPocasi;
 		
-		/*  JSON struktura odpovìdi na ádost o aktuální poèasí: 
+		/*  JSON struktura odpovÄ›di na Å¾Ã¡dost o aktuÃ¡lnÃ­ poÄasÃ­: 
 				{
 				"coord":{"lon":-0.13,"lat":51.51},
 				"weather":[{"id":300,"main":"Drizzle","description":"light intensity drizzle","icon":"09d"}],
@@ -33,17 +33,17 @@ public class Main {
 				}
 		 */
 		
-		aktualniPocasi="Aktuální poèasí pro mìsto: "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getString("name")+"\n"+
-						"  teplota aktuální:	   "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("main").getDouble("temp")+"\n"+
-						"  teplota minimální:	   "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("main").getDouble("temp_min")+"\n"+
-						"  teplota maximální:	   "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("main").getDouble("temp_max")+"\n"+
+		aktualniPocasi="AktuÃ¡lnÃ­ poÄasÃ­ pro mÄ›sto: "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getString("name")+"\n"+
+						"  teplota aktuï¿½lnï¿½:	   "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("main").getDouble("temp")+"\n"+
+						"  teplota minimï¿½lnï¿½:	   "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("main").getDouble("temp_min")+"\n"+
+						"  teplota maximï¿½lnï¿½:	   "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("main").getDouble("temp_max")+"\n"+
 						"  tlak:            	   "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("main").getDouble("pressure")+"\n"+
-						"  rychlost vìtru:         "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("wind").getDouble("speed")+"\n"+
+						"  rychlost vï¿½tru:         "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("wind").getDouble("speed")+"\n"+
 						"  popis:                  "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONArray("weather").getJSONObject(0).getString("description");
 		
 		System.out.println(aktualniPocasi);
 		
-		/* JSON struktura odpovìdi na ádost o pøedpovìï: 
+		/* JSON struktura odpovÄ›di na Å¾Ã¡dost o pÅ™edpovÄ›Ä: 
 		{
 			"city":{"id":1851632,"name":"Shuzenji",
 			"coord":{"lon":138.933334,"lat":34.966671},
@@ -72,12 +72,12 @@ public class Main {
 	        */
 		
 		predpovedPocasi="\n"+
-						"Pøedpovìï poèasí na 5 dnù pro mìsto: "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONObject("city").getString("name")+"\n"+
+						"PÅ™edpovÄ›Ä poÄasÃ­ na 5 dnÅ¯ pro mÄ›sto: "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONObject("city").getString("name")+"\n"+
 				        "  teplota:                  "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONArray("list").getJSONObject(0).getJSONObject("main").getDouble("temp")+"\n"+
-						"  teplota minimální:        "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONArray("list").getJSONObject(0).getJSONObject("main").getDouble("temp_min")+"\n"+
-						"  teplota maximální:        "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONArray("list").getJSONObject(0).getJSONObject("main").getDouble("temp_max")+"\n"+
+						"  teplota minimï¿½lnï¿½:        "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONArray("list").getJSONObject(0).getJSONObject("main").getDouble("temp_min")+"\n"+
+						"  teplota maximï¿½lnï¿½:        "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONArray("list").getJSONObject(0).getJSONObject("main").getDouble("temp_max")+"\n"+
 						"  tlak:                     "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONArray("list").getJSONObject(0).getJSONObject("main").getDouble("pressure")+"\n"+
-						"  rychlost vìtru:           "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONArray("list").getJSONObject(0).getJSONObject("wind").getDouble("speed")+"\n"+
+						"  rychlost vï¿½tru:           "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONArray("list").getJSONObject(0).getJSONObject("wind").getDouble("speed")+"\n"+
 						"  popis:                    "+pocasi.getOdpovedPredpovedPocasi().getBody().getObject().getJSONArray("list").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description")+"\n";
 		System.out.println(predpovedPocasi);
 		
