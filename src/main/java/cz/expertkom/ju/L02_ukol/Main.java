@@ -43,7 +43,6 @@ public class Main {
 		
 		System.out.println(aktualniPocasi);
 		
-		
 		/* JSON struktura odpovìdi na žádost o pøedpovìï: 
 		{
 			"city":{"id":1851632,"name":"Shuzenji",
