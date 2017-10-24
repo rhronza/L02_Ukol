@@ -5,6 +5,9 @@ package cz.expertkom.ju.L02_ukol;
  * 
  * Aplikační logika je ve třídě "Pocasi" 
  * 
+ * Aplikace využívá Code page UTF-8. V Eclipse: 
+ * Windows->Preferencies->General->Workspace->dole na stránce se dá přepnout
+ * 
  */
 
 public class Main {
