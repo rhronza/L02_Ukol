@@ -36,6 +36,10 @@ public class Main {
 				}
 		 */
 		
+		PocasiZa100Let pocasiza100Let = new PocasiZa100Let();
+		PocasiZa999Let pocasiZa999Let = new PocasiZa999Let();
+		//pocasiza100Let.set100LetAaa("").
+		
 		aktualniPocasi="Aktuální počasí pro město: "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getString("name")+"\n"+
 						"  teplota aktuální:	   "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("main").getDouble("temp")+"\n"+
 						"  teplota minimální:	   "+pocasi.getOdpovedAktualniPocasi().getBody().getObject().getJSONObject("main").getDouble("temp_min")+"\n"+
