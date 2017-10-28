@@ -5,7 +5,11 @@ import java.lang.annotation.Repeatable;
 /*
  * Aktuální počasí a jeho předpověď pomocí API portálu http://openweathermap.org/api
  * 
- * Aplikační logika je ve třídě "Pocasi" 
+ * Aplikační logika je ve třídách
+ * 	1. "Pocasi"  - stáhne Unirestem do HttpResponse<JsonNode>
+ * 	2. PrehledPocasi -  transformuje do HttpResponse<JsonNode> Listu stringů
+ * 	3. PrehledPocasiInterface - má pouze 2 metody get-y, které odkazují na List<stringů> Aktuálního počasí a Předpovědi počasí
+ * 4. Main vypíše seznamy čtyřmi různými interacemi
  * 
  * Aplikace využívá Code page UTF-8. V Eclipse: 
  * Windows->Preferencies->General->Workspace->dole na stránce se dá přepnout
