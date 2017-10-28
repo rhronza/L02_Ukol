@@ -1,11 +1,8 @@
 package cz.expertkom.ju.L02_ukol;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
 
 /*
  *  počasí pomocí API portálu http://openweathermap.org/api a knihovny UNIREST
@@ -29,6 +26,8 @@ public class PrehledPocasi extends Pocasi implements PrehledPocasiInterface{
 		this.prehledPocasiAktualni.add("           rychlost větru: "+getAktualniRychlostVetru().toString());
 		this.prehledPocasiAktualni.add("                     tlak: "+getAktualniTlak().toString());
 		this.prehledPocasiAktualni.add("                    popis: "+getAktualniPopis());
+		Date datumCas = new Date();
+		
 		
 		/* naplnění seznamu předpovědi počasí */
 		this.prehledPocasiPredpoved.add("Předpověď počasí pro město: "+getPrepovedMesto());
