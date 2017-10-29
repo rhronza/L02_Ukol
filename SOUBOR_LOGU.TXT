@@ -1,0 +1,3 @@
+29.10.2017 15:12:35: LOG ZALOŽEN
+29.10.2017 15:12:36: Začátek programu
+29.10.2017 15:12:39: Nepodařilo se získat data z webové stránky

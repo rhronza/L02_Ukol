@@ -1,5 +1,7 @@
 package cz.expertkom.ju.L02_ukol;
 
+import java.text.SimpleDateFormat;
+
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -29,8 +31,10 @@ public class Pocasi {
 	private HttpResponse<JsonNode> odpovedAktualniPocasi; 
 	private HttpResponse<JsonNode> odpovedPredpovedPocasi;
 
+	protected static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+	
 	/* konstruktor */
-	public Pocasi() {
+	public Pocasi() throws MyException {
 		
 		/* ten blok try,catch jsem tam musel dát neb mi Eclipse stále obtěžovala, že mám neošetřenou výjimku :-)  */
 		try {
@@ -39,7 +43,7 @@ public class Pocasi {
 			this.odpovedPredpovedPocasi = Unirest.get(ZADOST_PREDPOVED_POCASI).asJson();
 
 		} catch (Exception e) {
-			System.out.println("chyba: "+e.getLocalizedMessage());
+			throw new MyException("Nepodařilo se získat data z webové stránky");			
 		}
 	}
 	
@@ -81,7 +85,7 @@ public class Pocasi {
 	public Double getAktualniTeplotaMaximalni() {
 		return odpovedAktualniPocasi.getBody().getObject().getJSONObject("main").getDouble("temp_max");
 	}
-	
+
 	public Double getAktualniTlak() {
 		return odpovedAktualniPocasi.getBody().getObject().getJSONObject("main").getDouble("pressure");
 	}

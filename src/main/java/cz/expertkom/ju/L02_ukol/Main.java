@@ -1,6 +1,4 @@
-    package cz.expertkom.ju.L02_ukol;
-
-import java.lang.annotation.Repeatable;
+package cz.expertkom.ju.L02_ukol;
 
 /*
  * Aktuální počasí a jeho předpověď pomocí API portálu http://openweathermap.org/api
@@ -10,17 +8,25 @@ import java.lang.annotation.Repeatable;
  * 	2. PrehledPocasi -  transformuje do HttpResponse<JsonNode> Listu stringů
  * 	3. PrehledPocasiInterface - má pouze 2 metody get-y, které odkazují na List<stringů> Aktuálního počasí a Předpovědi počasí
  * 	4. Main vypíše seznamy čtyřmi různými iteracemi
+ * 	5. V průběhu programu se vytváří Log programu pro každý jeho běh nový, Log se na konci vypíše, obsahuje i případnou hlášku 
+ *  	Exception i značky o provedené sekvenci programu
  * 
  * Aplikace využívá Code page UTF-8. V Eclipse: 
  * Windows->Preferencies->General->Workspace->dole na stránce se dá přepnout
  * 
  */
 
-public class Main {
+public class Main  {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MyException {
 
-		PrehledPocasiInterface pocasi = new PrehledPocasi();
+		ObsluhaLogu obsluhaLogu = new ObsluhaLogu();
+		obsluhaLogu.zalozLog();
+		obsluhaLogu.pridejZapisDoLogu("Začátek programu");
+		
+		/* tohle mi vnutila Eclipse */
+		final PrehledPocasiInterface pocasi = new PrehledPocasi();
+		
 		
 		/* vypis aktuálního počasí přes cyklus for each...  */
 		System.out.println("******************************************************");
@@ -60,7 +66,11 @@ public class Main {
 			i++;
 		} while(i<pocasi.getPrehledPocasiPredpoved().size());
 		
+		//if (true) {throw new MyException("Konec programu");}
 		
+		
+		obsluhaLogu.pridejZapisDoLogu("Konec programu");
+		obsluhaLogu.vypisLog();
 		
 		
 		
