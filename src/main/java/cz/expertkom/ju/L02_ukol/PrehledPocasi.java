@@ -1,3 +1,4 @@
+
 package cz.expertkom.ju.L02_ukol;
 
 import java.text.SimpleDateFormat;
@@ -15,10 +16,13 @@ public class PrehledPocasi extends Pocasi implements PrehledPocasiInterface{
 
     private List<String> prehledPocasiAktualni = new ArrayList<String>();
     private List<String> prehledPocasiPredpoved = new ArrayList<String>();
+    
 	
 	public PrehledPocasi() throws MyException {
 		super();
 		
+		if ((getOdpovedPredpovedPocasi() !=null)&&(getOdpovedAktualniPocasi()!=null)) 
+		{		
 		/* naplnění seznamu aktuálního počasí */ 
 		this.prehledPocasiAktualni.add("Aktuální počasí pro město: "+getAktualniPocasiMesto());
 		this.prehledPocasiAktualni.add("         teplota průměrná: "+getAktualniTeplotaPrumer().toString());
@@ -41,8 +45,8 @@ public class PrehledPocasi extends Pocasi implements PrehledPocasiInterface{
 		this.prehledPocasiPredpoved.add("                     tlak: "+getPredpovedTlak().toString());
 		this.prehledPocasiPredpoved.add("                    popis: "+getPredpovedPopis());
 		datumCas = new Date();
-        this.prehledPocasiAktualni.add("    Datum a čas vytvoření: "+sdf.format(datumCas));
-
+        this.prehledPocasiPredpoved.add("    Datum a čas vytvoření: "+sdf.format(datumCas));
+		}
 		
 	}
 
@@ -61,9 +65,5 @@ public class PrehledPocasi extends Pocasi implements PrehledPocasiInterface{
 	public void setPrehledPocasiPredpoved(List<String> prehledPocasiPredpoved) {
 		this.prehledPocasiPredpoved = prehledPocasiPredpoved;
 	}
-
-
-
-
 }
 

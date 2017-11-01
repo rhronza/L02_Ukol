@@ -1,10 +1,15 @@
 package cz.expertkom.ju.L02_ukol;
 
 /* tohle mi vnutila Eclipse*/
-@SuppressWarnings("serial") 
+// @SuppressWarnings("serial") 
 
 public class MyException extends Exception {
 	
+	/**
+	 * 
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String duvod;
 	private ObsluhaLogu obsluhaLogu = new ObsluhaLogu();
 	

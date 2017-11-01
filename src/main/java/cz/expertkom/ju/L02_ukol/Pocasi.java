@@ -22,28 +22,32 @@ public class Pocasi {
 	
 	private static final String ZADOST_AKTUALNI_POCASI 	= "http://api.openweathermap.org/data/2.5/weather?id="+mesto+"&units="+units+"&lang="+lang+"&APPID="+apiKey;
 	private static final String ZADOST_PREDPOVED_POCASI = "http://api.openweathermap.org/data/2.5/forecast?id="+mesto+"&units="+units+"&lang="+lang+"&APPID="+apiKey;
+	
+	private ObsluhaLogu obsluhaLogu = new ObsluhaLogu();
 
 	/* 
 	 * do těchto tříd se ukládají odpovědi na dotaz klienta metodou get() na server 
 	 * (výsledky jsou ve formátu JS0ON) proměnné se inicializují v kontruktoru:
 	 * 	 *  
 	 *  */
-	private HttpResponse<JsonNode> odpovedAktualniPocasi; 
-	private HttpResponse<JsonNode> odpovedPredpovedPocasi;
+	private HttpResponse<JsonNode> odpovedAktualniPocasi=null; 
+	private HttpResponse<JsonNode> odpovedPredpovedPocasi=null;
 
 	protected static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 	
 	/* konstruktor */
 	public Pocasi() throws MyException {
 		
-		/* ten blok try,catch jsem tam musel dát neb mi Eclipse stále obtěžovala, že mám neošetřenou výjimku :-)  */
 		try {
 			
 			this.odpovedAktualniPocasi  = Unirest.get(ZADOST_AKTUALNI_POCASI). asJson();
 			this.odpovedPredpovedPocasi = Unirest.get(ZADOST_PREDPOVED_POCASI).asJson();
+			obsluhaLogu.pridejZapisDoLogu("Podařilo se získat data z webové stránky");
 
 		} catch (Exception e) {
-			throw new MyException("Nepodařilo se získat data z webové stránky");			
+			//throw new MyException("Nepodařilo se získat data z webové stránky");	
+			obsluhaLogu.pridejZapisDoLogu("Nepodařilo se získat data z webové stránky");
+		
 		}
 	}
 	

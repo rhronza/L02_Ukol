@@ -8,8 +8,8 @@ package cz.expertkom.ju.L02_ukol;
  * 	2. PrehledPocasi -  transformuje do HttpResponse<JsonNode> Listu stringů
  * 	3. PrehledPocasiInterface - má pouze 2 metody get-y, které odkazují na List<stringů> Aktuálního počasí a Předpovědi počasí
  * 	4. Main vypíše seznamy čtyřmi různými iteracemi
- * 	5. V průběhu programu se vytváří Log programu pro každý jeho běh nový, Log se na konci vypíše, obsahuje i případnou hlášku 
- *  	Exception i značky o provedené sekvenci programu
+ * 	5. V průběhu programu se vytváří Log programu (pro každý jeho běh nový), Log se na konci vypíše, obsahuje i případnou Exception hlášku 
+ *  	 a značky o provedené sekvenci programu
  * 
  * Aplikace využívá Code page UTF-8. V Eclipse: 
  * Windows->Preferencies->General->Workspace->dole na stránce se dá přepnout
@@ -27,7 +27,10 @@ public class Main  {
 		/* tohle mi vnutila Eclipse */
 		final PrehledPocasiInterface pocasi = new PrehledPocasi();
 		
-		
+		//if (pocasi.nacteniOK())
+		if ((pocasi.getOdpovedPredpovedPocasi()!=null)&&(pocasi.getOdpovedAktualniPocasi()!=null))
+		{
+							
 		/* vypis aktuálního počasí přes cyklus for each...  */
 		System.out.println("******************************************************");
 		System.out.println("*  aktuální počasí (for each)                        *");
@@ -68,10 +71,13 @@ public class Main  {
 		
 		//if (true) {throw new MyException("Konec programu");}
 		
+		}
 		
+		System.out.println("******************************************************");
+		System.out.println("*  soubor logu                                       *");
+		System.out.println("******************************************************");
 		obsluhaLogu.pridejZapisDoLogu("Konec programu");
 		obsluhaLogu.vypisLog();
-		
 		
 		
 		
