@@ -12,7 +12,8 @@ package cz.expertkom.ju.L02_ukol;
  *  	 a značky o provedené sekvenci programu
  * 
  * Aplikace využívá Code page UTF-8. V Eclipse: 
- * Windows->Preferencies->General->Workspace->dole na stránce se dá přepnout * 
+ * Windows->Preferencies->General->Workspace->dole na stránce se dá přepnout 
+ * (tato aplikace byla vytvořerna jako úkol pro Lekci 2)
  */
 
 public class Main  {
