@@ -1,7 +1,12 @@
 package cz.expertkom.ju.L02_ukol;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import com.google.gson.Gson;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -23,15 +28,26 @@ public class Pocasi {
 	private static final String ZADOST_AKTUALNI_POCASI 	= "http://api.openweathermap.org/data/2.5/weather?id="+mesto+"&units="+units+"&lang="+lang+"&APPID="+apiKey;
 	private static final String ZADOST_PREDPOVED_POCASI = "http://api.openweathermap.org/data/2.5/forecast?id="+mesto+"&units="+units+"&lang="+lang+"&APPID="+apiKey;
 	
+	
+	
+	
+	
 	private ObsluhaLogu obsluhaLogu = new ObsluhaLogu();
 
 	/* 
 	 * do těchto tříd se ukládají odpovědi na dotaz klienta metodou get() na server 
-	 * (výsledky jsou ve formátu JS0ON) proměnné se inicializují v kontruktoru:
+	 * (výsledky jsou ve formátu JSON) proměnné se inicializují v kontruktoru:
 	 * 	 *  
 	 *  */
 	private HttpResponse<JsonNode> odpovedAktualniPocasi=null; 
 	private HttpResponse<JsonNode> odpovedPredpovedPocasi=null;
+	
+	/* for download Web Page */
+	private static final String WEB_PAGE_DOWNLOAD= "https://www.softcom.cz/eshop";
+	//private static final String WEB_PAGE_DOWNLOAD= "http://httpbin.org";
+	private HttpResponse<?> downloadedWebPage=null;
+	private static Gson GSON = new Gson();
+	/*******************************************************************/
 
 	protected static final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 	
@@ -40,13 +56,48 @@ public class Pocasi {
 		
 		try {
 			
+			System.out.println("AA");
 			this.odpovedAktualniPocasi  = Unirest.get(ZADOST_AKTUALNI_POCASI). asJson();
+			
+			System.out.println("Ab:"+ZADOST_PREDPOVED_POCASI);
 			this.odpovedPredpovedPocasi = Unirest.get(ZADOST_PREDPOVED_POCASI).asJson();
+			
+			/* ******************************************************************************************* 
+			 * 
+			 * testování pro domácí úkol: načtení webové stránky a zjištění prvního výrobku s jeho cenami
+			 * zjištění výrobku: split podle apostrofu a pokud řetez končí ".html" jedná se o link
+			 * zjištění ceny: iterují se následné řádky, pokud je v něm "cena", tak se splituje podle "span" a následně se 
+			 * odstraní znaky tagů:"<u>/" - výsledek je včetně měny (Kč)
+			 *   
+			 * 
+			 * ****************************************************************************************** */
+			String stringDownloadedWebPage = Unirest.get(WEB_PAGE_DOWNLOAD).asString().getBody();
+			String[] poleStringu = stringDownloadedWebPage.split("'");
+			boolean productFound = false;
+			for (String s: poleStringu) {
+				if (s.endsWith(".html")&& !productFound) {
+					System.out.println("\n\nVýrobek: "+s);
+					productFound=true;
+				}
+				if (productFound &&(s.contains("cena:"))) {
+					String[] poleStringu2 = s.split("span");
+					for (String s2: poleStringu2) {
+						if(s2.contains("Kč")) {
+							System.out.println(s2.replaceAll("[<u>/]", ""));
+						}
+					}		
+					break;
+				}
+			}
+			
+			/* ******************************************************************************************* */
+						
 			obsluhaLogu.pridejZapisDoLogu("Podařilo se získat data z webové stránky");
 
 		} catch (Exception e) {
 			//throw new MyException("Nepodařilo se získat data z webové stránky");	
 			obsluhaLogu.pridejZapisDoLogu("Nepodařilo se získat data z webové stránky");
+			System.out.println(e.getLocalizedMessage());
 		
 		}
 	}
@@ -163,6 +214,27 @@ public class Pocasi {
 	public String getPredpovedPopis() {
 		return odpovedPredpovedPocasi.getBody().getObject().getJSONArray("list").getJSONObject(0).getJSONArray("weather").getJSONObject(0).getString("description");
 	}
+	
+	/**
+	 * Returns a list with all links contained in the input
+	 */
+/*
+	public List<String> extractUrls(String text)
+	{
+	    List<String> containedUrls = new ArrayList<String>();
+	    String urlRegex = "((https?|ftp|gopher|telnet|file):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
+	    Pattern pattern = Pattern.compile(urlRegex, Pattern.CASE_INSENSITIVE);
+	    Matcher urlMatcher = pattern.matcher(text);
+
+	    while (urlMatcher.find())
+	    {
+	        containedUrls.add(text.substring(urlMatcher.start(0),
+	                urlMatcher.end(0)));
+	    }
+
+	    return containedUrls;
+	}
+*/
 }
 
 	
