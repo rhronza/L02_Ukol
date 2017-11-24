@@ -1,4 +1,4 @@
-21.11.2017 01:08:15: LOG ZALOŽEN
-21.11.2017 01:08:15: Začátek programu
-21.11.2017 01:08:17: Podařilo se získat data z webové stránky
-21.11.2017 01:08:17: Konec programu
+21.11.2017 15:14:33: LOG ZALOŽEN
+21.11.2017 15:14:33: Začátek programu
+21.11.2017 15:14:35: Podařilo se získat data z webové stránky
+21.11.2017 15:14:35: Konec programu

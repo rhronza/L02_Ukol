@@ -43,7 +43,7 @@ public class Pocasi {
 	private HttpResponse<JsonNode> odpovedPredpovedPocasi=null;
 	
 	/* for download Web Page */
-	private static final String WEB_PAGE_DOWNLOAD= "https://www.softcom.cz/eshop";
+	private static final String WEB_PAGE_DOWNLOAD= "http://"+"www.softcom.cz";
 	//private static final String WEB_PAGE_DOWNLOAD= "http://httpbin.org";
 	private HttpResponse<?> downloadedWebPage=null;
 	private static Gson GSON = new Gson();
